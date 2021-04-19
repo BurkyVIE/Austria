@@ -39,7 +39,7 @@ ggplot() +
   geom_sf(data = austria, fill = NA, color = "grey25", size = 2) +
   geom_sf(data = lhstd, color = "grey25", size = 2) +
   geom_sf_label(data = lhstd, mapping = aes(label = Name), nudge_y = c(-1, 1, -1, -1, 1, -1, -1, 1, 1) * 10000, alpha = .75, size = 3.25) +
-  scale_color_distiller(name = "Distance [km]", palette = "YlOrRd", direction = -1) +
+  scale_color_distiller(name = "Distance [km]", palette = "YlOrRd", direction = 1) +
   labs(title = "Closest Austrian state capital map") +
   theme_void() +
   theme(legend.position = "bottom",
