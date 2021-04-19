@@ -8,7 +8,7 @@ austria <- ne_countries(scale = 10, country = "Austria", returnclass = "sf") %>%
   st_transform(., 3416)
 
 # Erzeuge Netz
-netz <- st_make_grid(austria, cellsize = 1250, what = "centers")
+netz <- st_make_grid(austria, cellsize = 1000, what = "centers") # cellsize 1250
 
 # Netz nur innerhalb Grenzen
 netz <- st_intersection(netz, austria)
@@ -22,9 +22,13 @@ dist <- st_distance(austria, netz) %>% as.vector() %>% `/`(1000)
 # Ergaenze Distanzen im Netz
 netz <- st_sf(geometry = netz, Distanz = dist)
 
+# Maximale Distanz zur Grenze
+maxi <- netz %>% filter(Distanz == max(Distanz))
+
 ggplot() +
   geom_sf(data = netz, mapping = aes(color = Distanz)) +
   geom_sf(data = austria, fill = NA, color = "grey25", size = 2) +
+  # geom_sf(data = maxi, color = "grey25", size = 2) +
   scale_color_distiller(name = "Distance [km]", palette = "YlGnBu", direction = -1) +
   # scale_color_fermenter(name = "Distance [km]", palette = "YlGnBu", direction = -1, breaks = (0:8)*15) +
   labs(title = "Closest Austrian border map") +
@@ -34,4 +38,4 @@ ggplot() +
 
 windows(12, 7)
 plot(p)
-rm(austria, netz, dist, p)
+rm(austria, netz, dist, maxi, p)
