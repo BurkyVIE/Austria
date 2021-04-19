@@ -8,7 +8,7 @@ austria <- ne_countries(scale = 10, country = "Austria", returnclass = "sf") %>%
   st_transform(., 3416)
 
 # Erzeuge Netz
-netz <- st_make_grid(austria, cellsize = 1000, what = "centers") # cellsize 1250
+netz <- st_make_grid(austria, cellsize = 1250, what = "centers")
 
 # Netz nur innerhalb Grenzen
 netz <- st_intersection(netz, austria)
