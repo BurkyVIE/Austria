@@ -22,13 +22,13 @@ lhstd <- tribble(~Name, ~Lat, ~Long,
                       "Klagenfurt", 46.616667, 14.3,
                       "Linz", 48.3, 14.283333,
                       "Salzburg", 47.8, 13.033333,
-                      "St. Pölten", 48.2, 15.616667,
+                      "St. PÃ¶lten", 48.2, 15.616667,
                       "Wien", 48.208333, 16.366667) %>%
   st_as_sf(coords = c("Long", "Lat"), crs = 4326) %>%
   st_transform(., 3416) %>%
   st_cast(., "POINT")
 
-# Berechne nächste LHStd fuer Netz
+# Berechne naechste LHStd fuer Netz
 dist <- st_distance(lhstd, netz) %>% apply(., 2, min) %>% `/`(1000)
 
 # Ergaenze Distanzen im Netz
