@@ -16,7 +16,7 @@ netz <- st_intersection(netz, austria)
 # transform Austria from polygon shape to line
 austria <- st_cast(austria, "MULTILINESTRING")
 
-# Berechne nächste LHStd fuer Netz
+# Berechne naechste LHStd fuer Netz
 dist <- st_distance(austria, netz) %>% as.vector() %>% `/`(1000)
 
 # Ergaenze Distanzen im Netz
