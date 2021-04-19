@@ -24,6 +24,7 @@ netz <- st_sf(geometry = netz, Distanz = dist)
 
 # Maximale Distanz zur Grenze
 maxi <- netz %>% filter(Distanz == max(Distanz))
+# st_transform(maxi, 4326) %>% print()
 
 ggplot() +
   geom_sf(data = netz, mapping = aes(color = Distanz)) +
